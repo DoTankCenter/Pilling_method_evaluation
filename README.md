@@ -1,98 +1,156 @@
-# Noppanalys Application
+# Noppanalys - Interaktiv Textilanalys
 
-This is the standalone Noppanalys application moved to its own directory with all required dependencies.
+En avancerad applikation för analys av textila material med fokus på noppdetektering och ytstrukturanalys. Utvecklad med moderna bildanalysmetoder och maskininlärningstekniker.
 
-## Directory Structure
+## Om Applikationen
 
-```
-noppanalys_app/
-├── src/
-│   ├── noppanalys_gui.py    # Main application file
-│   └── assets/
-│       ├── EU_logga.png     # EU logo
-│       └── wargon_logo.png  # Wargön logo
-├── build_output/
-│   ├── build/               # PyInstaller build artifacts
-│   └── dist/                # Built executable
-├── requirements.txt         # Python dependencies
-├── noppanalys.spec         # PyInstaller configuration
-├── build.bat               # Windows build script
-└── README.md               # This file
-```
+Noppanalys är ett verktyg för kvalitetsbedömning av textila material genom automatisk bildanalys. Applikationen kombinerar flera avancerade analysmetoder för att identifiera och klassificera noppar (pills) och andra ytdefekter i textiler.
 
-## Building the Application
+## Huvudfunktioner
 
-### Option 1: Minimal Build (Recommended - ~300MB)
-1. Make sure you have Python and pip installed
-2. Run the minimal build script:
-   ```bash
-   cd noppanalys_app
-   build_minimal.bat
-   ```
-   This creates a clean virtual environment with only required dependencies, resulting in a much smaller executable (~300MB instead of 2GB).
+### 🔬 Analysmetoder
 
-### Option 1b: Single File Build (Recommended - ~300MB in one file)
-1. Make sure you have Python and pip installed
-2. Run the single file build script:
-   ```bash
-   cd noppanalys_app
-   build_onefile.bat
-   ```
-   This creates a single executable file that contains everything. First startup may be slightly slower as files are extracted temporarily.
+**Grundläggande Metoder:**
+- **LBP + Varians**: Local Binary Pattern med variansanalys för texturdetektering
+- **Fourier + Gauss**: Frekvensdomänanalys med gaussisk filtrering
+- **Morfologisk**: Matematisk morfologi för strukturdetektering
 
-### Option 2: Using Existing Environment
-1. Make sure you have Python and pip installed
-2. Create and activate a virtual environment in the parent directory:
-   ```bash
-   cd ..
-   python -m venv .venv
-   .venv\Scripts\activate
-   ```
-3. Run the build script:
-   ```bash
-   cd noppanalys_app
-   build.bat
-   ```
-   **Warning**: This may result in a very large executable if your .venv contains many packages.
+**Experimentella Metoder:** *(Aktiveras i experimentellt läge)*
+- **Wavelet Transform**: Flerskalig wavelet-analys för detaljrik texturanalys
+- **Kombinerad**: Hybridmetod som kombinerar flera tekniker
+- **DPCA + ML**: Dimensionalitetsreduktion med maskininlärning
 
-## Running the Application
+### 🖼️ Bildhantering & UI-funktioner
 
-### From Source
+- **Bildladdning**: Stöd för PNG, JPG, JPEG, BMP, TIFF format
+- **Interaktiv Zoom**: Klicka och dra för att välja analysområde (ROI)
+- **Realtidsuppdatering**: Parametrar uppdateras direkt i visualiseringen
+- **Laddningsindikatorer**: Animerad aktivitetsindikator under processer
+- **Jämförelseläge**: Kör alla metoder samtidigt för komparativ analys
+
+### 📊 Visualisering & Analys
+
+- **Färganalys**: Automatisk färgviktsberäkning baserat på bildinnehåll
+- **Statistisk analys**: Detaljerad statistik över identifierade noppar
+- **Parameterinställningar**: Justerbara inställningar för varje analysmetod
+- **Resultatexport**: Spara analyser och parametrar
+
+## Teknisk Beskrivning av Analysmetoder
+
+### LBP + Varians (Local Binary Pattern)
+Använder lokala binära mönster för att karakterisera texturer i bilden. Metoden:
+- Beräknar LBP för varje pixel med konfigurerbar radie och antal punkter
+- Kombinerar med variansanalys för att identifiera områden med ojämn textur
+- Optimal för att detektera småskaliga texturvariationer som noppar
+
+### Fourier + Gauss (Frekvensdomänanalys)
+Analyserar bilden i frekvensdomänen för att identifiera periodiska strukturer:
+- Tillämpar Fourier-transform för att identifiera frekvenskomponenter
+- Använder gaussisk filtrering för brusreducering
+- Detekterar avvikelser från den förväntade textila strukturen
+
+### Morfologisk Analys
+Använder matematisk morfologi för strukturell bildanalys:
+- Tillämpar erosions- och dilationsoperationer
+- Identifierar sammanhängande strukturer och defekter
+- Effektiv för att separera noppar från bakgrundstextur
+
+### Wavelet Transform *(Experimentell)*
+Flerskalig analys med wavelet-transformation:
+- Dekomponerar bilden i olika skalor och orientationer
+- Identifierar lokala diskontinuiteter och texturavvikelser
+- Särskilt användbar för komplexa textilstrukturer
+
+### DPCA + ML *(Experimentell)*
+Avancerad maskininlärningsmetod:
+- Dimensionalitetsreduktion med Principal Component Analysis
+- Klassificering med Neural Networks, SVM och Random Forest
+- Automatisk gradindelning av noppning enligt textilstandarder
+- Statistiska mått inklusive skewness och kurtosis
+
+## Installation och Användning
+
+### Nedladdning
+Ladda ner den senaste versionen från [Releases](https://github.com/DoTankCenter/Pilling_method_evaluation/releases)
+
+### Körning av Applikationen
+1. Ladda ner och kör `Noppanalys.exe`
+2. Ingen installation krävs - applikationen är självständig
+
+### Från Källkod
 ```bash
 cd src
 python noppanalys_gui.py
 ```
 
-### Built Executable
+## Användargränssnitt och Funktioner
+
+### 🖼️ Bildhantering
+- **Ladda Bild**: Klicka på "Ladda Bild" eller använd menyn Fil → Öppna
+- **Zoomfunktion**:
+  - Aktivera "Zoom Mode" för att välja analysområde
+  - Klicka och dra för att skapa rektangulärt ROI (Region of Interest)
+  - "Reset Zoom" återgår till hela bilden
+
+### ⚙️ Analysparametrar
+- **Metod**: Välj mellan grundläggande och experimentella analysmetoder
+- **Reglage**: Justera metodspecifika parametrar med realtidsuppdatering
+- **Färgvikter**: Justera RGB-vikter för färganalys
+- **Experimentellt läge**: Aktivera för tillgång till avancerade metoder
+
+### 🔄 Analys och Resultat
+- **Enkel Analys**: Kör vald metod med "Analysera"
+- **Jämförelse**: "Jämför Alla Metoder" visar resultat från alla tillgängliga metoder
+- **Laddningsindikatorer**:
+  - Animerad aktivitetsindikator visar pågående processer
+  - Statusmeddelanden informerar om aktuell operation
+- **Realtidsuppdatering**: Parameterjusteringar uppdaterar automatiskt resultatet
+
+### 💾 Export och Spara
+- **Spara Analys**: Exportera resultat och inställningar till fil
+- **Funktionsbeskrivning**: Generera teknisk dokumentation av analysmetoder
+
+## Systemkrav och Beroenden
+
+### Systemkrav
+- Windows 10/11 (64-bit)
+- Minst 4GB RAM
+- 500MB ledigt diskutrymme
+
+### Python-beroenden (för utvecklare)
+**Kärnbibliotek:**
+- `numpy >= 1.21.0` - Numeriska beräkningar
+- `opencv-python >= 4.5.0` - Bildbehandling
+- `matplotlib >= 3.5.0` - Visualisering
+- `scipy >= 1.7.0` - Vetenskapliga beräkningar
+- `scikit-image >= 0.18.0` - Bildanalys
+- `Pillow >= 8.0.0` - Bildhantering
+
+**Avancerade funktioner:**
+- `scikit-learn >= 1.0.0` - Maskininlärning
+- `PyWavelets >= 1.1.0` - Wavelet-analys
+
+### Utvecklingsbygge
+För att bygga applikationen från källkod:
 ```bash
-cd build_output\dist\Noppanalys
-Noppanalys.exe
+pip install -r requirements.txt
+pyinstaller noppanalys.spec
 ```
 
-## Dependencies
+## Teknisk Support och Utveckling
 
-The application requires the following Python packages:
+### Bidrag
+Välkomna bidrag till projektet! Se till att:
+- Dokumentera nya analysmetoder
+- Inkludera tester för nya funktioner
+- Följ befintliga kodkonventioner
 
-### Minimal Dependencies (requirements_minimal.txt - Recommended):
-- numpy >= 1.21.0
-- opencv-python >= 4.5.0
-- matplotlib >= 3.5.0
-- scipy >= 1.7.0
-- scikit-image >= 0.18.0
-- Pillow >= 8.0.0
-- scikit-learn >= 1.0.0
-- PyWavelets >= 1.1.0
-- pyinstaller >= 4.5.0
+### Buggrapporter
+Rapportera problem via GitHub Issues med:
+- Detaljerad beskrivning av problemet
+- Steg för att återskapa
+- Systemkonfiguration
 
-### All Dependencies (requirements.txt):
-Includes additional packages that may not be needed for basic functionality but are present in the original environment.
+---
 
-## Optimization Notes
-
-The original build was 2GB because it included many unnecessary packages like:
-- torch, tensorflow (deep learning frameworks)
-- transformers, accelerate, datasets (Hugging Face libraries)
-- pandas, pyarrow (data processing)
-- aiohttp, requests (web libraries)
-
-The optimized build excludes these and results in a much smaller executable.
+**Utvecklad i projektet "Innovationsmiljö för hållbar produktion och cirkulära flöden" på Wargön Innovation som är medfinansierat av Europeiska Unionen.**
