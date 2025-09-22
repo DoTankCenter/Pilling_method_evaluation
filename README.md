@@ -1,5 +1,6 @@
 # Noppanalys - Interaktiv Textilanalys
 
+<<<<<<< HEAD
 En avancerad applikation för analys av textila material med fokus på noppdetektering och ytstrukturanalys. Utvecklad med moderna bildanalysmetoder och maskininlärningstekniker.
 
 ## Om Applikationen
@@ -154,3 +155,6 @@ Rapportera problem via GitHub Issues med:
 ---
 
 **Utvecklad i projektet "Innovationsmiljö för hållbar produktion och cirkulära flöden" på Wargön Innovation som är medfinansierat av Europeiska Unionen.**
+=======
+This is the standalone Noppanalys application to discover analyze methods for Pilling.
+>>>>>>> 833646a925633f663065574b0506334363c0a24f
