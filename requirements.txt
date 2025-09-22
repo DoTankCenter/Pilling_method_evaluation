@@ -1,0 +1,18 @@
+# Core dependencies för Noppanalys GUI
+numpy>=1.21.0
+opencv-python>=4.5.0
+matplotlib>=3.5.0
+scipy>=1.7.0
+scikit-image>=0.18.0
+Pillow>=8.0.0
+
+# Optional dependencies för avancerade funktioner
+scikit-learn>=1.0.0
+PyWavelets>=1.1.0
+
+# För avancerad ML/AI (om användaren vill experimentera)
+# tensorflow>=2.8.0  # Uncomment för deep learning
+# torch>=1.10.0      # Uncomment för PyTorch
+
+# För standalone distribution
+pyinstaller>=4.5.0
