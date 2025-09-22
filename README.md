@@ -154,7 +154,10 @@ Rapportera problem via GitHub Issues med:
 
 ---
 
+<img width="1270" height="270" alt="EU_logga" src="https://github.com/user-attachments/assets/6ab1b8af-ac04-4de5-bcd0-b52f819a3b0a" />
+<img width="625" height="351" alt="wargon_logo" src="https://github.com/user-attachments/assets/cd6e26c3-23d8-4fa5-961d-511b7f4010b2" />
 **Utvecklad i projektet "Innovationsmiljö för hållbar produktion och cirkulära flöden" på Wargön Innovation som är medfinansierat av Europeiska Unionen.**
 =======
 This is the standalone Noppanalys application to discover analyze methods for Pilling.
 >>>>>>> 833646a925633f663065574b0506334363c0a24f
+
